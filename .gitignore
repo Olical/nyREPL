@@ -5,3 +5,5 @@
 .rebel_readline_history
 .nrepl-port
 classes/
+graalvm/
+bin/

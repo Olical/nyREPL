@@ -1,13 +1,15 @@
 [tools]
 clojure = "1.12.0"
 java = "temurin-21.0.6+7.0.LTS"
-graalvm = "19.2.1"
+
+[tasks.fetch-graalvm]
+run = [
+  "mkdir -p graalvm",
+  "curl https://download.oracle.com/graalvm/21/latest/graalvm-jdk-21_linux-x64_bin.tar.gz | tar -vxzC graalvm",
+]
 
 [tasks.build]
-run = [
-  "gu install native-image",
-  "clojure -M:native-image"
-]
+run = ["clojure -M:native-image:repl"]
 
 [tasks.format]
 run = "clojure -M:format"
@@ -22,3 +24,9 @@ run = "clojure -M:antq"
 [tasks.repl]
 raw = true
 run = "clojure -X:test:repl giants-shoulders.repl/start!"
+
+[env]
+_.path = [
+  "{{config_root}}/bin",
+  "{{config_root}}/graalvm/graalvm-jdk-21.0.7+8.1/bin",
+]

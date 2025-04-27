@@ -1,0 +1,44 @@
+name: Build
+
+on: [push]
+
+jobs:
+  clojure:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        # os: [ubuntu-latest, macOS-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Mise
+        uses: jdx/mise-action@v2
+
+      - name: Cache Clojure dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.gitlibs
+            ~/.deps.clj
+          key: cljdeps-${{ hashFiles('deps.edn') }}
+          restore-keys: cljdeps-
+
+      - name: Fetch GraalVM task hash
+        id: fetch-graalvm-task-hash
+        run: echo "hash=$(mise config get tasks.fetch-graalvm | md5sum)" >> $GITHUB_OUTPUT
+
+      - name: Cache GraalVM
+        uses: actions/cache@v4
+        with:
+          path: |
+            graalvm/
+          key: graalvm-${{ steps.fetch-graalvm-task-hash.outputs.hash }}
+          restore-keys: graalvm-
+
+      - name: Build
+        run: mise build

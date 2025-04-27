@@ -1,11 +1,10 @@
 (ns giants-shoulders.repl
   (:require [nrepl.server :as nrepl]
             [cider.nrepl :as cider]
-            [malli.core :as m]
             [malli.dev :as malli-dev]
             [malli.dev.pretty :as malli-pretty]
             [taoensso.timbre :as log]
-            [portal.api :as portal]
+            ; [portal.api :as portal]
             [mount.core :as mount]
             [rebel-readline.core :as rr]
             [rebel-readline.clojure.line-reader :as rr-clr]
@@ -16,12 +15,6 @@
 (mount/defstate system-status-logger
   :start (log/info "Mount system started")
   :stop (log/info "Mount system stopped"))
-
-(m/=> add [:=> [:cat number? number?] number?])
-(defn- add
-  "If you have LSP configured correctly you should see a type error / warning if you try to type (add :foo 10) inside this buffer."
-  [a b]
-  (+ a b))
 
 (defn start!
   "Start a development REPL, intended to be invoked from ./scripts/repl"
@@ -38,10 +31,10 @@
     (log/info "Writing port to .nrepl-port")
     (spit ".nrepl-port" port))
 
-  (when portal
-    (log/info "Opening portal, use (tap> ...) to inspect values")
-    (portal/open)
-    (add-tap #'portal/submit))
+  ; (when portal
+  ;   (log/info "Opening portal, use (tap> ...) to inspect values")
+  ;   (portal/open)
+  ;   (add-tap #'portal/submit))
 
   (log/info "Starting interactive REPL")
   (rr/with-line-reader
@@ -52,9 +45,9 @@
 
   (log/info "Shutting down")
 
-  (when portal
-    (log/info "Closing portal")
-    (portal/close))
+  ; (when portal
+  ;   (log/info "Closing portal")
+  ;   (portal/close))
 
   (log/info "Stopping mount system")
   (mount/stop)

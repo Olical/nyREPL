@@ -1,4 +1,4 @@
-# nyREPL
+# nyREPL (\[a\]ny REPL)
 
 An experiment at the moment. Goals:
 

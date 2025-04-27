@@ -14,3 +14,7 @@ An experiment at the moment. Goals:
   - Support more than just stdio, if it can read Janet's netrepl and spit out nREPL that's even more code we can delete from Conjure.
 
 I aim to make this a universal translator to nREPL concepts so that Conjure can simplify down to an opinionated bundle of nREPL clients.
+
+## Notes
+
+ - [sci](https://github.com/babashka/sci) might be the best way to provide configuration scripts per language.

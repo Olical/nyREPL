@@ -25,8 +25,8 @@ jobs:
             ~/.m2/repository
             ~/.gitlibs
             ~/.deps.clj
-          key: cljdeps-${{ hashFiles('deps.edn') }}
-          restore-keys: cljdeps-
+          key: test-cljdeps-${{ hashFiles('deps.edn') }}
+          restore-keys: test-cljdeps-
 
       - name: Execute Kaocha
         run: mise test

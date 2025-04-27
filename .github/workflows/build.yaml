@@ -25,8 +25,8 @@ jobs:
             ~/.m2/repository
             ~/.gitlibs
             ~/.deps.clj
-          key: cljdeps-${{ hashFiles('deps.edn') }}
-          restore-keys: cljdeps-
+          key: build-cljdeps-${{ hashFiles('deps.edn') }}
+          restore-keys: build-cljdeps-
 
       - name: Fetch GraalVM task hash
         id: fetch-graalvm-task-hash
@@ -37,8 +37,8 @@ jobs:
         with:
           path: |
             graalvm/
-          key: graalvm-${{ steps.fetch-graalvm-task-hash.outputs.hash }}
-          restore-keys: graalvm-
+          key: build-graalvm-${{ runner.os }}-${{ steps.fetch-graalvm-task-hash.outputs.hash }}
+          restore-keys: build-graalvm-${{ runner.os }}
 
       - name: Build
         run: mise build

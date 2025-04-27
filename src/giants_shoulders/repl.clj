@@ -1,7 +1,6 @@
 (ns giants-shoulders.repl
   (:require [nrepl.server :as nrepl]
             [cider.nrepl :as cider]
-            [typed.clojure :as t]
             [malli.core :as m]
             [malli.dev :as malli-dev]
             [malli.dev.pretty :as malli-pretty]
@@ -23,12 +22,6 @@
   "If you have LSP configured correctly you should see a type error / warning if you try to type (add :foo 10) inside this buffer."
   [a b]
   (+ a b))
-
-(add 10 :foo)
-
-(comment
-  ;; TODO Can the LSP run typed-clojure? If not, might not be a nice workflow.
-  (t/check-ns-clj 'giants-shoulders.repl))
 
 (defn start!
   "Start a development REPL, intended to be invoked from ./scripts/repl"

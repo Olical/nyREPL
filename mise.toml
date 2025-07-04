@@ -27,10 +27,7 @@ run = "clojure -T:build deploy"
 
 [tasks.fetch-graalvm]
 outputs = ["graalvm/graalvm-jdk-21.0.7+8.1"]
-run = [
-  "mkdir -p graalvm",
-  "curl https://download.oracle.com/graalvm/21/latest/graalvm-jdk-21_linux-x64_bin.tar.gz | tar -vxzC graalvm",
-]
+run = "[ -d graalvm ] || (mkdir -p graalvm && curl -sSL https://download.oracle.com/graalvm/21/latest/graalvm-jdk-21_linux-x64_bin.tar.gz | tar -vxzC graalvm)"
 
 [tasks.native-image]
 depends = ["fetch-graalvm"]

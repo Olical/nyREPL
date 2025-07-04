@@ -41,4 +41,4 @@ jobs:
           restore-keys: build-graalvm-${{ runner.os }}
 
       - name: Build
-        run: mise build
+        run: mise native-image

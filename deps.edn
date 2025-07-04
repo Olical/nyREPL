@@ -5,6 +5,9 @@
   ;; Logging
   ; com.taoensso/telemere {:mvn/version "1.0.1"}
 
+  ;; Clojure evaluation for the REPL adaptor code.
+  org.babashka/sci {:mvn/version "0.10.47"}
+
   ;; Schemas and type checking
   org.typedclojure/typed.clj.runtime {:mvn/version "1.3.1-SNAPSHOT"}
 

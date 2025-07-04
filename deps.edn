@@ -40,7 +40,12 @@
           :ns-default build}
   :native-image
   {:main-opts ["-m" "clj.native-image" "nyrepl.main"
+               "--gc=G1"
+               "--pgo"
+               "--strict-image-heap"
+               "--no-fallback"
                "--initialize-at-build-time"
+               "-march=native"
                "-H:+UnlockExperimentalVMOptions"
                "-H:Name=nyrepl"
                "-H:Path=bin"]

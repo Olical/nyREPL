@@ -4,7 +4,7 @@ An experiment at the moment. Goals:
 
 - Single binary from GraalVM native compilation.
 - Can be configured (using interpreted Clojure files as configuration) to support any REPL.
-- Wraps a REPL like `python` and proxies it's stdio streams into an nREPL server.
+- Wraps a REPL like `python` and proxies its stdio streams into an nREPL server.
 - Replace almost all of [Conjure's](https://github.com/Olical/conjure) special stdio REPL interpretation code with nREPL connections.
 - If this PoC works, stretch goals
   - Support other IO, like socket files
@@ -17,4 +17,4 @@ I aim to make this a universal translator to nREPL concepts so that Conjure can 
 
 ## Notes
 
- - [sci](https://github.com/babashka/sci) might be the best way to provide configuration scripts per language.
+- [sci](https://github.com/babashka/sci) might be the best way to provide configuration scripts per language.
